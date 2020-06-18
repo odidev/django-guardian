@@ -16,7 +16,7 @@ fi;
 
 # Install database drivers
 if [[ $DATABASE_URL = postgres* ]]; then
-    sudo apt-get install postgresql
+    sudo apt-get update && sudo apt-get -y install postgresql
     service postgresql start
     PACKAGES+=('psycopg2-binary==2.8.4');
     psql -c 'create database django_guardian;' -U postgres;
@@ -24,7 +24,7 @@ if [[ $DATABASE_URL = postgres* ]]; then
 fi;
 
 if [[ $DATABASE_URL = mysql* ]]; then
-    sudo apt-get install mysql-server
+    sudo apt-get update && sudo apt-get -y install mysql-server
     service mysql start
     PACKAGES+=('mysqlclient==1.4.5');
     mysql -e 'CREATE DATABASE django_guardian;';
