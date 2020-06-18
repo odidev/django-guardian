@@ -12,9 +12,11 @@ script:
 notifications:
   email: false
 
-services: 
+apt:
+   addons:
    - postgresql
-   - mysql
+   - libpq-dev
+   - mysql-server
    
 templates:
   django22: &django22 DJANGO_VERSION=2.2.*
