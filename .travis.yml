@@ -3,6 +3,11 @@ dist: xenial
 
 cache: pip
 
+before_install:
+  - sudo apt-get update && sudo apt-get -y install postgresql mysql-server
+  - service postgresql start
+  - service mysql start
+
 install:
   - ./contrib/travis/install.sh
 
@@ -11,12 +16,6 @@ script:
 
 notifications:
   email: false
-
-apt:
-   addons:
-   - postgresql
-   - libpq-dev
-   - mysql-server
    
 templates:
   django22: &django22 DJANGO_VERSION=2.2.*
