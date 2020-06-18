@@ -12,6 +12,10 @@ script:
 notifications:
   email: false
 
+services: 
+   - postgresql
+   - mysql
+   
 templates:
   django22: &django22 DJANGO_VERSION=2.2.*
   django30: &django30 DJANGO_VERSION=3.0.*
@@ -54,14 +58,14 @@ matrix:
     - { python: 3.7, env: [*djangomaster, *mysql], <<: *mariadb}
     - { python: 3.7, env: [*djangomaster, *sqlite]}
 
-    - { arch: arm64, services: postgresql, python: 3.7, env: [*django22, *postgres], <<: *pgdb}
-    - { arch: arm64, services: mysql, python: 3.7, env: [*django22, *mysql], <<: *mariadb}
+    - { arch: arm64, python: 3.7, env: [*django22, *postgres], <<: *pgdb}
+    - { arch: arm64, python: 3.7, env: [*django22, *mysql], <<: *mariadb}
     - { arch: arm64, python: 3.7, env: [*django22, *sqlite]}
-    - { arch: arm64, services: postgresql, python: 3.7, env: [*django30, *postgres], <<: *pgdb}
-    - { arch: arm64, services: mysql, python: 3.7, env: [*django30, *mysql], <<: *mariadb}
+    - { arch: arm64, python: 3.7, env: [*django30, *postgres], <<: *pgdb}
+    - { arch: arm64, python: 3.7, env: [*django30, *mysql], <<: *mariadb}
     - { arch: arm64, python: 3.7, env: [*django30, *sqlite]}
-    - { arch: arm64, services: postgresql, python: 3.7, env: [*djangomaster, *postgres], <<: *pgdb}
-    - { arch: arm64, services: mysql, python: 3.7, env: [*djangomaster, *mysql], <<: *mariadb}
+    - { arch: arm64, python: 3.7, env: [*djangomaster, *postgres], <<: *pgdb}
+    - { arch: arm64, python: 3.7, env: [*djangomaster, *mysql], <<: *mariadb}
     - { arch: arm64, python: 3.7, env: [*djangomaster, *sqlite]}
 
     - { python: 3.8, env: [*django22, *postgres], <<: *pgdb}
